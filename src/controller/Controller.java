@@ -97,18 +97,4 @@ public class Controller {
                 .map(v-> {ReferenceValue v1 = (ReferenceValue)v; return v1.getAddress();})
                 .collect(Collectors.toList());
     }
-
-    public boolean oneStepGUI() throws MyException {
-        List<ProgramState> programs = removeCompletedPrg(repository.getProgramStates());
-        if (programs.size() > 0) {
-            oneStepForAllPrograms(programs);
-            removeCompletedPrg(repository.getProgramStates());
-            return true;
-        } else {
-            executor.shutdownNow();
-            repository.setProgramStates(programs);
-            return false;
-        }
-    }
-
 }
